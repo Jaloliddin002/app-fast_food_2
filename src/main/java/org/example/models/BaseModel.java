@@ -12,4 +12,5 @@ import java.util.UUID;
 public class BaseModel {
     private UUID Id = UUID.randomUUID();
     private Date date = new Date();
+
 }
