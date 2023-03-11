@@ -5,5 +5,7 @@ public class Main {
         int a = 4;
         //Umidjon
         System.out.println("Hello world!");
+        //Mnetta
+        String s = "Hello Worg`rld!";
     }
 }
