@@ -15,4 +15,5 @@ public class User extends BaseModel{
     private double balance;
     private String phoneNumber;
 
+
 }
