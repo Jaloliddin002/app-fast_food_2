@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class Payment extends BaseModel{
+public class PaymentEntity extends BaseModel{
     private List<UUID> foods;
     private UUID cardId;
     private double amount;

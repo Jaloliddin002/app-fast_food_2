@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-public class Combo extends BaseModel{
+public class ComboEntity extends BaseModel{
     private List<UUID> foods;
     private List<UUID> drinks;
     private double price;

@@ -7,11 +7,11 @@ import org.example.enums.Role;
 @Getter
 @Setter
 @ToString
-public class User extends BaseModel{
+public class UserEntity extends BaseModel{
     private String name;
     private String password;
     private Role role;
-    private Card card;
+    private CardEntity cardEntity;
     private double balance;
     private String phoneNumber;
 

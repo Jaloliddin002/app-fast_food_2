@@ -8,9 +8,9 @@ import org.example.enums.CardType;
 @Setter
 @Builder
 @ToString
-public class Card extends BaseModel{
+public class CardEntity extends BaseModel{
     private CardType cardType;
     private String password;
     private double balance;
-    private User owner;
+    private UserEntity owner;
 }

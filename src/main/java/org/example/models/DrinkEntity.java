@@ -1,16 +1,14 @@
 package org.example.models;
 
 import lombok.*;
-
+import org.example.enums.DrinkType;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@Builder
-public class Food extends BaseModel{
+public class DrinkEntity extends BaseModel{
     private String name;
-    private String type;
     private double price;
-    private String preparationTime;
+    private DrinkType drinkType;
 }

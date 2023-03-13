@@ -1,8 +1,6 @@
 package org.example.dto.requests;
 
 import lombok.*;
-import org.example.enums.Role;
-import org.example.models.Card;
 
 import java.util.UUID;
 
