@@ -20,6 +20,13 @@ public class FoodServiceImp implements FoodService{
 
     @Override
     public boolean create(FoodRequestDto foodRequestDto) {
+        if (foodRequestDto.getName() != null && foodRequestDto.getPrice() != 0){
+            List<FoodEntity> data = getData();
+            if (data == null)data=new ArrayList<>();
+            data.add(modelMapper.map(foodRequestDto,FoodEntity.class));
+            writeData(data);
+            return true;
+        }
         return false;
     }
 

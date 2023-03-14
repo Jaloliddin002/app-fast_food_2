@@ -21,6 +21,15 @@ public class ComboServiceImp implements ComboService{
 
     @Override
     public boolean create(ComboRequestDto comboRequestDto) {
+        if (comboRequestDto.getDrinks()!=null&&comboRequestDto.getFoods()!=null&&comboRequestDto.getPrice()!=0){
+            List<ComboEntity> data = getData();
+            if (data == null)data=new ArrayList<>();
+            data.add(modelMapper.map(comboRequestDto,ComboEntity.class));
+            writeData(data);
+            comboRequestDto.setDrinks(new ArrayList<>());
+            comboRequestDto.setFoods(new ArrayList<>());
+            return true;
+        }
         return false;
     }
 

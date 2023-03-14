@@ -150,6 +150,15 @@ public class UserServiceImp implements UserService{
 
     @Override
     public UserResponseDto setOwner() {
-        return null;
+        UserEntity user = new UserEntity();
+        user.setRole(Role.OWNER);
+        user.setName("Jalolliddin");
+        user.setPassword("root");
+        user.setPhoneNumber("2002");
+        List<UserEntity> data = getData();
+        if (data== null) data = new ArrayList<>();
+        data.add(user);
+        writeData(data);
+        return modelMapper.map(user, UserResponseDto.class);
     }
 }

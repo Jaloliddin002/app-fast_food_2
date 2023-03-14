@@ -20,6 +20,13 @@ public class DrinkServiceImp implements DrinkService{
 
     @Override
     public boolean create(DrinkRequestDto drinkRequestDto) {
+        if (drinkRequestDto.getName() != null &&drinkRequestDto.getPrice()!=0){
+            List<DrinkEntity> data = getData();
+            if (data == null)data=new ArrayList<>();
+            data.add(modelMapper.map(drinkRequestDto,DrinkEntity.class));
+            writeData(data);
+            return true;
+        }
         return false;
     }
 

@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,26 +20,72 @@ public class PaymentServiceImp implements PaymentService{
 
     @Override
     public boolean create(PaymentRequestDto paymentRequestDto) {
+        if (paymentRequestDto.getAmount() != 0) {
+            List<PaymentEntity> data = getData();
+            if (data == null) data = new ArrayList<>();
+            data.add(modelMapper.map(paymentRequestDto, PaymentEntity.class));
+            writeData(data);
+            paymentRequestDto.setFoods(new ArrayList<>());
+            return true;
+        }
         return false;
     }
 
     @Override
     public PaymentResponseDto get(UUID id) {
+        List<PaymentEntity> data = getData();
+        if (data != null){
+            for (PaymentEntity payment : data) {
+                if (payment.getId().equals(id)){
+                    return modelMapper.map(payment,PaymentResponseDto.class);
+                }
+            }
+        }
         return null;
     }
 
     @Override
     public List<PaymentResponseDto> getList() {
+        List<PaymentEntity> data = getData();
+        if (data != null){
+            List<PaymentResponseDto> paymentResponseDto=new ArrayList<>();
+            for (PaymentEntity payment : data) {
+                paymentResponseDto.add(modelMapper.map(payment,PaymentResponseDto.class));
+            }
+            return paymentResponseDto;
+        }
         return null;
     }
 
     @Override
     public boolean delete(UUID id) {
+        List<PaymentEntity> data = getData();
+        if (data != null){
+            for (PaymentEntity payment : data) {
+                if (payment.getId().equals(id)){
+                    data.remove(payment);
+                    writeData(data);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     @Override
     public boolean update(UUID id, PaymentRequestDto paymentRequestDto) {
+        List<PaymentEntity> data = getData();
+        if (data != null){
+            for (PaymentEntity payment : data) {
+                if (payment.getId().equals(id)){
+                    data.remove(payment);
+                    modelMapper.map(paymentRequestDto,payment);
+                    data.add(payment);
+                    writeData(data);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -71,6 +118,14 @@ public class PaymentServiceImp implements PaymentService{
 
     @Override
     public PaymentEntity getEntity(UUID id) {
+        List<PaymentEntity> data = getData();
+        if (data != null){
+            for (PaymentEntity payment : data) {
+                if (payment.getId().equals(id)){
+                    return payment;
+                }
+            }
+        }
         return null;
     }
 }
